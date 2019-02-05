@@ -19,6 +19,10 @@ class Game
     neighbours(x, y).select { |n| alive?(n[0], n[1])}.size
   end
 
+  def tick(x, y)
+    kill(x, y) unless living_neighbours(x, y) == 3
+  end
+
   private
 
   def neighbours(x, y)

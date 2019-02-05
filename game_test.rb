@@ -62,4 +62,14 @@ class GameTest < Test::Unit::TestCase
     assert_equal 1, world.living_neighbours(0, 0)
     assert_equal 3, world.living_neighbours(1, 1)
   end
+
+  def test_can_kill_a_cell_that_does_not_have_3_neighbours
+    world = Game.new
+
+    world.live(0, 0)
+    world.live(1, 0)
+    world.tick(0, 0)
+
+    assert_equal false, world.alive?(0, 0)
+  end
 end
