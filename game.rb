@@ -14,4 +14,11 @@ class Game
   def alive?(x, y)
     @board[[x, y]]
   end
+
+  def neighbours(x, y)
+    neighbours = 0
+    neighbours += 1 if alive?(x+1, y)
+    neighbours += 1 if alive?(x-1, y)
+    neighbours
+  end
 end
