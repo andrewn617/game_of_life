@@ -15,16 +15,15 @@ class Game
     @board[[x, y]]
   end
 
+  def living_neighbours(x, y)
+    neighbours(x, y).select { |n| alive?(n[0], n[1])}.size
+  end
+
+  private
+
   def neighbours(x, y)
-    neighbours = 0
-    neighbours += 1 if alive?(x+1, y)
-    neighbours += 1 if alive?(x-1, y)
-    neighbours += 1 if alive?(x, y+1)
-    neighbours += 1 if alive?(x, y-1)
-    neighbours += 1 if alive?(x+1, y+1)
-    neighbours += 1 if alive?(x+1, y-1)
-    neighbours += 1 if alive?(x-1, y+1)
-    neighbours += 1 if alive?(x-1, y-1)   
+    neighbours = [x, x+1, x-1].product([y, y+1, y-1])
+    neighbours.delete([x, y])
     neighbours
   end
 end
