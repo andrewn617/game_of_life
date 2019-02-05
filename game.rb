@@ -20,7 +20,9 @@ class Game
   end
 
   def tick(x, y)
-    kill(x, y) unless living_neighbours(x, y) == 3
+    return kill(x, y) unless living_neighbours(x, y) == 3
+
+    live(x, y)
   end
 
   private
