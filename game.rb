@@ -26,9 +26,7 @@ class Game
   private
 
   def neighbours(x, y)
-    neighbours = [x, x+1, x-1].product([y, y+1, y-1])
-    neighbours.delete([x, y])
-    neighbours
+    [x, x+1, x-1].product([y, y+1, y-1]).select { |n| n != [x,y]}
   end
 
   def tick_cell(x, y)
