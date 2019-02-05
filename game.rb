@@ -16,7 +16,7 @@ class Game
   end
 
   def living_neighbours(x, y)
-    neighbours(x, y).select { |n| alive?(n[0], n[1])}.size
+    neighbours(x, y).select { |n| alive?(n[0], n[1]) }.size
   end
 
   def tick
@@ -26,7 +26,7 @@ class Game
   private
 
   def neighbours(x, y)
-    [x, x+1, x-1].product([y, y+1, y-1]).select { |n| n != [x,y]}
+    [x, x+1, x-1].product([y, y+1, y-1]).select { |n| n != [x,y] }
   end
 
   def tick_cell(x, y)
