@@ -19,6 +19,12 @@ class Game
     neighbours = 0
     neighbours += 1 if alive?(x+1, y)
     neighbours += 1 if alive?(x-1, y)
+    neighbours += 1 if alive?(x, y+1)
+    neighbours += 1 if alive?(x, y-1)
+    neighbours += 1 if alive?(x+1, y+1)
+    neighbours += 1 if alive?(x+1, y-1)
+    neighbours += 1 if alive?(x-1, y+1)
+    neighbours += 1 if alive?(x-1, y-1)   
     neighbours
   end
 end

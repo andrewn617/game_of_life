@@ -39,4 +39,27 @@ class GameTest < Test::Unit::TestCase
     assert_equal 1, world.neighbours(0, 0)
     assert_equal 2, world.neighbours(1, 0)
   end
+
+  def test_can_check_for_vertical_neighbours
+    world = Game.new
+
+    world.live(0, 0)
+    world.live(0, 1)
+    world.live(0, 2)
+
+    assert_equal 1, world.neighbours(0, 0)
+    assert_equal 2, world.neighbours(0, 1)
+  end
+
+  def test_can_check_for_diagonal_neighbours
+    world = Game.new
+
+    world.live(0, 0)
+    world.live(1, 1)
+    world.live(2, 2)
+    world.live(0, 2)
+
+    assert_equal 1, world.neighbours(0, 0)
+    assert_equal 3, world.neighbours(1, 1)
+  end
 end
