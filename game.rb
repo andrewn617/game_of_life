@@ -15,10 +15,6 @@ class Game
     @board[[x, y]]
   end
 
-  def living_neighbours(x, y)
-    neighbours(x, y).select { |n| alive?(n[0], n[1]) }.size
-  end
-
   def tick
     cells_to_tick = [cells_to_kill, cells_to_live]
 
@@ -42,6 +38,10 @@ class Game
       .flatten
       .uniq
       .select { |c| living_neighbours(c[0], c[1]) == 3 }
+  end
+
+  def living_neighbours(x, y)
+    neighbours(x, y).select { |n| alive?(n[0], n[1]) }.size
   end
 
   def all_living_cells

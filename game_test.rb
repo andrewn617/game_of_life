@@ -28,41 +28,6 @@ class GameTest < Test::Unit::TestCase
     assert_equal true, world.alive?(1, 0)
   end 
 
-
-  def test_can_check_for_horizontal_neighbours
-    world = Game.new
-
-    world.live(0, 0)
-    world.live(1, 0)
-    world.live(2, 0)
-
-    assert_equal 1, world.living_neighbours(0, 0)
-    assert_equal 2, world.living_neighbours(1, 0)
-  end
-
-  def test_can_check_for_vertical_neighbours
-    world = Game.new
-
-    world.live(0, 0)
-    world.live(0, 1)
-    world.live(0, 2)
-
-    assert_equal 1, world.living_neighbours(0, 0)
-    assert_equal 2, world.living_neighbours(0, 1)
-  end
-
-  def test_can_check_for_diagonal_neighbours
-    world = Game.new
-
-    world.live(0, 0)
-    world.live(1, 1)
-    world.live(2, 2)
-    world.live(0, 2)
-
-    assert_equal 1, world.living_neighbours(0, 0)
-    assert_equal 3, world.living_neighbours(1, 1)
-  end
-
   def test_can_kill_a_cell_that_does_not_have_3_neighbours
     world = Game.new
 
