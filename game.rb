@@ -29,7 +29,7 @@ class Game
   private
 
   def neighbours(x, y)
-    [x, x+1, x-1].product([y, y+1, y-1]).select { |n| n != [x,y] }
+    [x, x+1, x-1].product([y, y+1, y-1]).reject { |n| n == [x,y] }
   end
 
   def cells_to_kill
