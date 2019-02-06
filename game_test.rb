@@ -89,6 +89,7 @@ class GameTest < Test::Unit::TestCase
 
   def test_can_tick_multiple_cells_at_once
     world = Game.new
+
     world.live(0, 0)
     world.live(1, 0)
     world.live(1, 1)
@@ -97,5 +98,18 @@ class GameTest < Test::Unit::TestCase
 
     assert_equal true, world.alive?(0, 0)
     assert_equal false, world.alive?(-1, 0)
+  end
+
+  def test_a_cell_survives_tick_even_if_its_neighbours_die
+    world = Game.new
+
+    world.live(1, 2)
+    world.live(2, 3)
+    world.live(1, 4)
+    world.live(3, 3)
+    world.tick
+
+    assert_equal false, world.alive?(1, 2)
+    assert_equal true, world.alive?(2, 3)
   end
 end
