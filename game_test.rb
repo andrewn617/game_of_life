@@ -38,15 +38,13 @@ class GameTest < Test::Unit::TestCase
     assert_equal false, world.alive?(0, 0)
   end
 
-
-  def test_can_make_a_cell_with_3_neighbours_live
+  def test_can_make_a_cell_with_2_neighbours_live
 
     world = Game.new
 
     world.live(0, 0)
     world.live(1, 0)
     world.live(1, 1)
-    world.live(-1, 0)
     world.tick
 
     assert_equal true, world.alive?(0, 0)

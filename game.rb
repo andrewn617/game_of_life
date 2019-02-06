@@ -16,10 +16,11 @@ class Game
   end
 
   def tick
-    cells_to_tick = [cells_to_kill, cells_to_live]
+    cells_to_tick = [cells_to_kill, cells_to_live, cells_to_keep_alive]
 
     cells_to_tick[0].map { |c| kill(c[0], c[1]) }
     cells_to_tick[1].map { |c| live(c[0], c[1]) }
+    cells_to_tick[2].map { |c| live(c[0], c[1]) }
   end
 
   private
@@ -37,7 +38,11 @@ class Game
       .map { |c| neighbours(c[0], c[1]) }
       .flatten
       .uniq
-      .select { |c| living_neighbours(c[0], c[1]) == 3 }
+      .select { |c| living_neighbours(c[0], c[1]) == 3 && !alive?(c[0], c[1])}
+  end
+
+  def cells_to_keep_alive
+    all_living_cells.select { |c| living_neighbours(c[0], c[1]) == 2 }
   end
 
   def living_neighbours(x, y)
