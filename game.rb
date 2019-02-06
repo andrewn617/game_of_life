@@ -16,11 +16,14 @@ class Game
   end
 
   def living_neighbours(x, y)
-    neighbours(x, y).select { |e| alive?(e[0], e[1]) }.size
+    neighbours(x, y).select { |n| alive?(n[0], n[1]) }.size
   end
 
   def tick
-    cells_to_kill.map { |e| kill(e[0], e[1]) }
+    cells_to_tick = [cells_to_kill, cells_to_live]
+
+    cells_to_tick[0].map { |c| kill(c[0], c[1]) }
+    cells_to_tick[1].map { |c| live(c[0], c[1]) }
   end
 
   private
@@ -31,5 +34,17 @@ class Game
 
   def cells_to_kill
     @board.keys.select { |k| living_neighbours(k[0], k[1]) != 3 }
+  end
+
+  def cells_to_live
+    all_living_cells
+      .map { |c| neighbours(c[0], c[1]) }
+      .flatten
+      .uniq
+      .select { |c| living_neighbours(c[0], c[1]) == 3 }
+  end
+
+  def all_living_cells
+    @board.keys.select { |k| alive?(k[0], k[1]) }
   end
 end

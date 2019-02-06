@@ -112,4 +112,15 @@ class GameTest < Test::Unit::TestCase
     assert_equal false, world.alive?(1, 2)
     assert_equal true, world.alive?(2, 3)
   end
+
+  def test_tick_can_bring_a_new_cell_to_life
+    world = Game.new
+    
+    world.live(0, 0)
+    world.live(0, 2)
+    world.live(1, 1)
+    world.tick
+
+    assert_equal true, world.alive?(0, 1)
+  end
 end
